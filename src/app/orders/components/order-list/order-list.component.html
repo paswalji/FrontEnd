@@ -1,0 +1,26 @@
+<h2>My Orders</h2>
+
+<div *ngIf="orders.length > 0; else noOrders">
+  <table>
+    <thead>
+      <tr>
+        <th>Order ID</th>
+        <th>Date</th>
+        <th>Total</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let order of orders">
+        <td>{{ order.id }}</td>
+        <td>{{ order.date | date:'short' }}</td>
+        <td>₹{{ order.total }}</td>
+        <td><button (click)="viewOrder(order.id)">View</button></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<ng-template #noOrders>
+  <p>You have no orders yet.</p>
+</ng-template>

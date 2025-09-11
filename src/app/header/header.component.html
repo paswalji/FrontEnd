@@ -1,11 +1,14 @@
+<header class="navbar">
+  <div class="logo">
+    <a routerLink="/">ShopX</a>
+  </div>
+  <nav>
+   
+<a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Home</a>
 
-<header class="header">
-  <div class="logo">{{ appName }}</div>
-  <nav class="nav">
-    <a href="#">Home</a>
-    <a href="#">Products</a>
-    <a href="#">Cart</a>
-    <a href="#">Profile</a> 
-    <a href="#">Login</a>
+    <a routerLink="/products" routerLinkActive="active">Products</a>
+   <a routerLink="/cart" routerLinkActive="active">Cart</a>
+    <a routerLink="/orders" routerLinkActive="active">Orders</a>
+    <a routerLink="/auth/login" routerLinkActive="active">Login</a>
   </nav>
 </header>
