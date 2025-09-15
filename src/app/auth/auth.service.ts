@@ -1,43 +1,21 @@
+// src/app/auth/auth.service.ts
 import { Injectable } from '@angular/core';
-import { Router } from '@angular/router';
-
-export interface User {
-  username: string;
-  password: string;
-}
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-  private users: User[] = [];
-  private loggedInUser: User | null = null;
+  private apiUrl = 'https://localhost:5001/api/auth'; // backend API
 
-  constructor(private router: Router) {}
+  constructor(private http: HttpClient) {}
 
-  register(user: User): boolean {
-    if (this.users.find(u => u.username === user.username)) {
-      return false; // username already exists
-    }
-    this.users.push(user);
-    return true;
+  register(data: any): Observable<any> {
+    return this.http.post(`${this.apiUrl}/register`, data);
   }
 
-  login(username: string, password: string): boolean {
-    const user = this.users.find(u => u.username === username && u.password === password);
-    if (user) {
-      this.loggedInUser = user;
-      return true;
-    }
-    return false;
-  }
-
-  logout() {
-    this.loggedInUser = null;
-    this.router.navigate(['/login']);
-  }
-
-  isLoggedIn(): boolean {
-    return this.loggedInUser != null;
+  login(data: any): Observable<any> {
+    return this.http.post(`${this.apiUrl}/login`, data);
   }
 }

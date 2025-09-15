@@ -1,13 +1,15 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterModule } from '@angular/router';
+import { FormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';  // ✅ import this
 import { HeaderComponent } from './header.component';
 
 @NgModule({
   declarations: [HeaderComponent],
   imports: [
     CommonModule,
-    RouterModule   // needed for routerLink
+    FormsModule,
+    RouterModule   // ✅ must be imported
   ],
   exports: [HeaderComponent]
 })

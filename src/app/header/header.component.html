@@ -1,14 +1,34 @@
-<header class="navbar">
-  <div class="logo">
-    <a routerLink="/">ShopX</a>
-  </div>
-  <nav>
-   
-<a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Home</a>
+<header class="header">
+  <div class="logo">Learning</div>
 
+  <!-- Dropdown -->
+  <div class="dropdown">
+    <button (click)="toggleDropdown()">
+      All ▼
+    </button>
+    <ul class="dropdown-menu" [class.show]="dropdownOpen">  
+      <li><a routerLink="/">All Categories</a></li>
+      <li><a routerLink="/products?category=electronics">Electronics</a></li>
+      <li><a routerLink="/products?category=fashion">Fashion</a></li>
+      <li><a routerLink="/products?category=sports">Sports</a></li>
+    </ul>
+  </div>
+
+  <!-- Search -->
+  <div class="search-container">
+    <input
+      type="text"
+      placeholder="Search products..."
+      [(ngModel)]="searchQuery"
+    />
+    <button (click)="onSearch()">Search</button>
+  </div>
+
+  <!-- Navigation links -->
+  <nav class="nav-links">
+    <a routerLink="/home" routerLinkActive="active">Home</a>
     <a routerLink="/products" routerLinkActive="active">Products</a>
-   <a routerLink="/cart" routerLinkActive="active">Cart</a>
-    <a routerLink="/orders" routerLinkActive="active">Orders</a>
+    <a routerLink="/cart" routerLinkActive="active">Cart</a>
     <a routerLink="/auth/login" routerLinkActive="active">Login</a>
   </nav>
 </header>

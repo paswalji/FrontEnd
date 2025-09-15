@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { AuthService } from 'src/app/auth/auth.service';  // ✅ correct path
 
 @Component({
   selector: 'app-register',
@@ -6,14 +7,19 @@ import { Component } from '@angular/core';
   styleUrls: ['./register.component.scss']
 })
 export class RegisterComponent {
-  username: string = '';
+  userName: string = '';
   email: string = '';
   password: string = '';
   confirmPassword: string = '';
+  firstName: string = '';
+  lastName: string = '';
+  role: string = '';
   error: string = '';
 
+  constructor(private authService: AuthService) {}
+
   register() {
-    if (!this.username || !this.email || !this.password || !this.confirmPassword) {
+    if (!this.userName || !this.email || !this.password || !this.confirmPassword || !this.firstName || !this.lastName || !this.role) {
       this.error = 'Please fill all fields';
       return;
     }
@@ -23,8 +29,24 @@ export class RegisterComponent {
       return;
     }
 
-    this.error = '';
-    // For testing purposes
-    alert(`Username: ${this.username}\nEmail: ${this.email}\nPassword: ${this.password}`);
+    const payload = {
+      userName: this.userName,
+      email: this.email,
+      password: this.password,
+      firstName: this.firstName,
+      lastName: this.lastName,
+      role: this.role
+    };
+
+    this.authService.register(payload).subscribe({
+      next: (res) => {
+        alert('Registration successful!');
+        console.log(res);
+      },
+      error: (err) => {
+        this.error = 'Registration failed!';
+        console.error(err);
+      }
+    });
   }
 }
