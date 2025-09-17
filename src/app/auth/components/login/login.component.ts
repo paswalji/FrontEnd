@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { AuthService } from 'src/app/auth/auth.service';   // ✅ correct path
-
+import { AuthService } from 'src/app/auth/auth.service';   
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -11,7 +11,7 @@ export class LoginComponent {
   password: string = '';
   error: string = '';
 
-  constructor(private authService: AuthService) {}
+  constructor(private authService: AuthService,private router: Router) {}
 
   login() {
     if (!this.userName || !this.password) {
@@ -24,6 +24,7 @@ export class LoginComponent {
         next: (res) => {
           console.log('Login successful:', res);
           alert('Login Successful ✅');
+           this.router.navigate(['/home']);
         },
         error: (err) => {
           console.error(err);

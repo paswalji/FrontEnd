@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class AuthService {
-  private apiUrl = 'https://localhost:5001/api/auth'; // backend API
+  private apiUrl = 'https://identityservice-gjbe.onrender.com/api/auth'; // backend API
 
   constructor(private http: HttpClient) {}
 
